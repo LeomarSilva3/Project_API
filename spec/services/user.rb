@@ -1,3 +1,4 @@
+#criando uma camada de serviços para servir Api user 
 class ApiUser
     include HTTparty
     base_uri "http://localhost:3001"

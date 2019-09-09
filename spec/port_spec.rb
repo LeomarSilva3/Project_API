@@ -1,8 +1,7 @@
 describe "post" do
     context "when new user" do
         before do
-            @new_user = build(:user).to_hash
-            #criando uma camada de serviços para servir Api user     
+            @new_user = build(:user).to_hash  
             @result = ApiUser.save(@new_user)
         end
          
@@ -12,7 +11,6 @@ describe "post" do
     context "duplicate email" do
         before do
             @new_user = build(:duplicateEmail).to_hash
-                
             @result = @result = ApiUser.save(@new_user)
         end
          
@@ -24,7 +22,6 @@ describe "post" do
     context "wrong email" do
         before do
             @new_user = build(:wrongEmail).to_hash
-                
             @result = @result = ApiUser.save(@new_user)
             
         end
@@ -38,7 +35,6 @@ describe "post" do
     context "not empty fields" do
         before do
             @new_user = build(:NotEmptyfields).to_hash
-                
             @result = @result = ApiUser.save(@new_user)
         end
          
@@ -49,7 +45,6 @@ describe "post" do
     context "not null" do
         before do
             @new_user = build(:NotNull).to_hash
-                
             @result = @result = ApiUser.save(@new_user)
         end
          
@@ -58,16 +53,15 @@ describe "post" do
     end
 
 
-    context "Success Authorization" do
+    context "Success Authorization", :teste do
         
         before do
             @new_user = build(:Success_Authorization).to_hash
-
             @result = ApiUser.authorization(@new_user)
         end
         
          it{expect(@result.response.code).to eql "200"}
-         it{expect(@result.parsed_response).to_json}
+         it{expect(@result.parsed_response).to has_content to_json}
     end
 
 

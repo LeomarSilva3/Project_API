@@ -35,4 +35,19 @@ FactoryBot.define do
         email {}
         password {}
     end
+
+
+    factory :Success_Authorization, class:UserModel do
+        full_name {"Leomar Barbosa"}
+        email {"eu@leomar.io"}
+        password {"123456"}
+    end
+
+    factory :Unathorization, class:UserModel do
+        full_name {"Leomar Silva"}
+        email {"eu@ledfgdgd.io"}
+        password {"123456"}
+    end
+
+
 end

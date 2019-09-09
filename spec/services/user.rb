@@ -1,6 +1,6 @@
 #criando uma camada de serviços para servir Api user 
 class ApiUser
-    include HTTparty
+    include HTTParty
     base_uri "http://localhost:3001"
     headers "Content-Type" => "application/json"
 

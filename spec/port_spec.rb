@@ -8,7 +8,7 @@ describe "post" do
         it{expect(@result.response.code).to eql "200"}
     end
 
-    context "duplicate email" do
+    context "duplicate email", :teste do
         before do
             @new_user = build(:duplicateEmail).to_hash
             @result = @result = ApiUser.save(@new_user)
@@ -39,7 +39,7 @@ describe "post" do
         end
          
         it{expect(@result.response.code).to eql "412"}
-        it{expect(@result.parsed_response["msg"]).to eql "Validation notEmpty failed"}
+        it{expect(@result.parsed_response["msg"]).to eql "Validation notEmpty on full_name failed"}
     end
 
     context "not null" do
@@ -49,11 +49,11 @@ describe "post" do
         end
          
         it{expect(@result.response.code).to eql "412"}
-        it{expect(@result.parsed_response["msg"]).to eql "Validation notEmpty failed"}
+        it{expect(@result.parsed_response["msg"]).to eql "Users.full_name cannot be null"}
     end
 
 
-    context "Success Authorization", :teste do
+    context "Success Authorization" do
         
         before do
             @new_user = build(:Success_Authorization).to_hash
@@ -61,7 +61,7 @@ describe "post" do
         end
         
          it{expect(@result.response.code).to eql "200"}
-         it{expect(@result.parsed_response).to has_content to_json}
+         
     end
 
 

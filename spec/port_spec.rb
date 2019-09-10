@@ -1,81 +1,50 @@
 describe "post" do
     context "when new user" do
-        before do
-            @new_user = build(:user).to_hash  
-            @result = ApiUser.save(@new_user)
-        end
-         
-        it{expect(@result.response.code).to eql "200"}
+        # before do
+        #     #prepara a massa de testes usando o FactoryBot
+        #     new_user = build(:user).to_hash
+        #     #prepara o post para testar Api 
+        #     @result = ApiUser.save(new_user)
+        # end
+      
+        let(:result) { ApiUser.save( build(:user).to_hash) } 
+        it{expect(result.response.code).to eql "200"}
     end
 
     context "duplicate email", :teste do
-        before do
-            @new_user = build(:duplicateEmail).to_hash
-            @result = @result = ApiUser.save(@new_user)
-        end
-         
-        it{expect(@result.response.code).to eql "409"}
-        it{expect(@result.parsed_response["msg"]).to eql "Oops. Looks like you already have an account with this email address."}
+        let(:result) { ApiUser.save(build(:duplicateEmail).to_hash) } 
+        it{expect(result.response.code).to eql "409"}
+        it{expect(result.parsed_response["msg"]).to eql "Oops. Looks like you already have an account with this email address."}
     end
-
 
     context "wrong email" do
-        before do
-            @new_user = build(:wrongEmail).to_hash
-            @result = @result = ApiUser.save(@new_user)
-            
-        end
-         
-        it{expect(@result.response.code).to eql "412"}
-        it{expect(@result.parsed_response["msg"]).to eql "Oops. You entered a wrong email."}
+        let(:result) {ApiUser.save(build(:wrongEmail).to_hash)} 
+        it{expect(result.response.code).to eql "412"}
+        it{expect(result.parsed_response["msg"]).to eql "Oops. You entered a wrong email."}
     end
 
-
-
     context "not empty fields" do
-        before do
-            @new_user = build(:NotEmptyfields).to_hash
-            @result = @result = ApiUser.save(@new_user)
-        end
-         
-        it{expect(@result.response.code).to eql "412"}
-        it{expect(@result.parsed_response["msg"]).to eql "Validation notEmpty on full_name failed"}
+        let(:result) { ApiUser.save(build(:NotEmptyfields).to_hash)}
+        it{expect(result.response.code).to eql "412"}
+        it{expect(result.parsed_response["msg"]).to eql "Validation notEmpty on full_name failed"}
     end
 
     context "not null" do
-        before do
-            @new_user = build(:NotNull).to_hash
-            @result = @result = ApiUser.save(@new_user)
-        end
-         
-        it{expect(@result.response.code).to eql "412"}
-        it{expect(@result.parsed_response["msg"]).to eql "Users.full_name cannot be null"}
+        let(:result) {ApiUser.save(build(:NotNull).to_hash)} 
+        it{expect(result.response.code).to eql "412"}
+        it{expect(result.parsed_response["msg"]).to eql "Users.full_name cannot be null"}
     end
 
 
     context "Success Authorization" do
-        
-        before do
-            @new_user = build(:Success_Authorization).to_hash
-            @result = ApiUser.authorization(@new_user)
-        end
-        
-         it{expect(@result.response.code).to eql "200"}
-         
+         let(:result) { ApiUser.authorization(build(:Success_Authorization).to_hash)}
+         it{expect(result.response.code).to eql "200"}
     end
 
 
     context "Unathorization" do
-    
-        before do
-            @new_user = build(:Unathorization).to_hash
-
-            @result = @result = ApiUser.authorization(@new_user)
-        end
-
-        puts @result
-        it{expect(@result.response.message).to eql "Unauthorized"}
-        
+        let(:result) { ApiUser.authorization(build(:Unathorization).to_hash)}
+        it{expect(result.response.message).to eql "Unauthorized"}   
     end
 
 

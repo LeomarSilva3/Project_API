@@ -1,5 +1,5 @@
 describe "get" do
-    context "search a registered new user", :teste do
+    context "search a registered new user" do
         let(:user) { build(:registered_user) }
         let(:token) { ApiUser.token(user.email, user.password) }
         let(:result) { ApiUser.find(token, user.id) }

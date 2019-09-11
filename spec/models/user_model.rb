@@ -3,7 +3,6 @@ class UserModel
 
     def to_hash
         {
-            id: @id,
             full_name: @full_name,
             email: @email,
             password: @password

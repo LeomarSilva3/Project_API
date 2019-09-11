@@ -11,7 +11,7 @@ describe "post" do
         it{expect(result.response.code).to eql "200"}
     end
 
-    context "duplicate email", :teste do
+    context "duplicate email" do
         let(:result) { ApiUser.save(build(:duplicateEmail).to_hash) } 
         it{expect(result.response.code).to eql "409"}
         it{expect(result.parsed_response["msg"]).to eql "Oops. Looks like you already have an account with this email address."}

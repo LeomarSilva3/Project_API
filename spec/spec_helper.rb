@@ -4,7 +4,7 @@ require "factory_bot"
 
 require_relative "factories"
 require_relative "database" 
-require_relative "services/user"
+require_relative "services/user_service"
 
 
 RSpec.configure do |config|

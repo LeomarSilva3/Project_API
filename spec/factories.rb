@@ -55,7 +55,7 @@ FactoryBot.define do
     end
 
     factory :registered_user, class:UserModel do
-        id {300}
+        id {0}
         full_name {"Guimaraes Barbosa"}
         email {"eu@guimaraesbarbosa.io"}
         password {"123456"}

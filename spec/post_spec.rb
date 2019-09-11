@@ -1,10 +1,10 @@
 describe "post" do
-    context "when new user" do
+    context "when new user", :teste1 do
         let(:result) { ApiUser.save( build(:user).to_hash) } 
         it{expect(result.response.code).to eql "200"}
     end
 
-    context "duplicate email", :teste1 do
+    context "duplicate email" do
         let(:result) { ApiUser.save(build(:duplicateEmail).to_hash) } 
         it{expect(result.response.code).to eql "409"}
         it{expect(result.parsed_response["msg"]).to eql "Oops. Looks like you already have an account with this email address."}

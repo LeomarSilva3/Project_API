@@ -14,15 +14,14 @@ class Database
     end
 
     def find_user(email)
-        query = "SELECT id, full_name, password, email, created_at, updated_at" \
-        "FROM public.users WHERE email = '#{email}';"
+        query = "SELECT id, full_name, password, email, created_at, updated_at FROM public.users WHERE email = '#{email}';"
         @connection.exec(query).first
 
     end 
     
     def delete_user(email)
-        query = "DELETE from public.users where email = '#{email}';"
-        @connection.exec (query)
+         
+        @connection.exec ("DELETE from public.users where email = '#{email}';")
         
     end
 end

@@ -6,7 +6,9 @@ describe "get" do
         let(:user_db) {Database.new.find_user(user.email)}
 
         it {expect(result.response.code).to eql "200"}
-        
+        it {expect(result.parsed_response["full_name"]).to eql user_db["full_name"]}
+        it {expect(result.parsed_response["email"]).to eql user_db["email"]}
+       
     end
 
 end

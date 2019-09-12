@@ -8,7 +8,13 @@ describe "get" do
         let(:result) { ApiUser.find(token, user.id) }
         let(:user_db) {Database.new.find_user(user.email)}
 
-        it {expect(result.response.code).to eql "200"}
+        it {
+            puts result.parsed_response.to_json
+            expect(result.response.code).to eql "200"
+            expect(result.parsed_response["full_name"]).to eql user_db["full_name"]
+            expect(result.parsed_response["password"]).to eql user_db["password"]
+            expect(result.parsed_response["email"]).to eql user_db["email"]
+        }
         
     end
 

@@ -1,5 +1,5 @@
 describe "post" do
-    context "when new user", :teste2 do
+    context "when new user" do
         let(:result) { ApiUser.save( build(:user).to_hash) } 
         it{
             expect(result.response.code).to eql "200"

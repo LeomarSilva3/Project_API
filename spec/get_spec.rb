@@ -1,5 +1,5 @@
 describe "get" do
-    context "search a registered new user" do
+    context "when registered a user" do
         #cria um usuario
         let(:user) { build(:registered_user) }
         #faz autenticação para recuperar um token

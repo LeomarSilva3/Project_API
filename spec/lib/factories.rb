@@ -67,4 +67,19 @@ FactoryBot.define do
        end
     end
 
+
+    factory :remove_user, class:UserModel do
+        id {0}
+        full_name {"Guimaraes Barbosa"}
+        email {"eu@guimaraesbarbosa.io"}
+        password {"123456"}
+
+       after(:build) do |user|
+            Database.new.delete_user(user.email)
+            result = ApiUser.save(user.to_hash)
+            user.id = result.parsed_response["id"]
+       end
+    
+    end
+
 end

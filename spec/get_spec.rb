@@ -1,7 +1,10 @@
 describe "get" do
     context "search a registered new user" do
+        #cria um usuario
         let(:user) { build(:registered_user) }
+        #faz autenticação para recuperar um token
         let(:token) { ApiUser.token(user.email, user.password) }
+        #verifica se o usuario existe na base de dados
         let(:result) { ApiUser.find(token, user.id) }
         let(:user_db) {Database.new.find_user(user.email)}
 

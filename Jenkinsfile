@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker {
             image "ruby:alpine"
-            image "rbenv:alpine"
             args "--network=skynet"
         }
        

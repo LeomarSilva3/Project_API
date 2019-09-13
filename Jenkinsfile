@@ -19,11 +19,6 @@ pipeline {
             steps {
                 sh "bundle exec rspec -fd"
             }
-            post {
-                always {
-                    cucumber fileIncludePattern: '**/*.json', jsonReportDirectory: 'log', sortingMethod: 'ALPHABETICAL'
-                }
-            }
         }
     }
 }

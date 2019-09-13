@@ -2,8 +2,8 @@ pipeline {
     agent {
         docker {
             image "ruby:alpine"
-            args "--network=skynet"
-            args "localhost:5432"
+           
+            
         }
        
     }
